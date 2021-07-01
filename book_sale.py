@@ -1,4 +1,7 @@
 
+from typing import Counter
+
+
 class Person:
     def __init__(self,first_name, last_name, email, phone_number, address):
         self.first_name=first_name
@@ -27,36 +30,63 @@ class Book:
     def print_books(self):
         print("from bookm class:  ",self.title,"   authorrrr :",self.author,"  isbn   :",self.isbn)
 
-class BookShop:
+class BookShop:   
 
-    def __init__(self,inventory=[]):
+    def __init__(self,inventory=[],sold_book=[]):
         self.inventory=inventory
-        #self.sold_book=sold_book
+        self.sold_book=sold_book
 
     def add_books(self,book):
         self.inventory.append(book) 
-        print("from bookshop book: ",book.title)     
+        
+        return book.title
+            
 
-    def search(self,title, author_name):
-       pass
-    
-    def sell(book):    
-        pass
-    
-    
-    def sales(author):
-        pass
+    def search(self,title,author):        
+        for book in self.inventory:
+            
+            
+            if book.title==title and book.author==author:
+                #print("kkkkkk",Counter(self.inventory))
+                #print("number of copies ",no_of_book)
 
+                #print(book.title,book.author,book.isbn)
+                #n=int(input(" enter the number of copy required: "))
+                
+                return book.title
 
-shop_obj=BookShop()
-author_obj=Author("K R Meera","thaiii","kr@gmail.com",78888888,"addressssssssss")  
-author_obj.print_person()     
-
-book_obj=Book("alchemist","Poulooo","12233488hdjhed")
-book_obj.print_books()
-author_obj.add_book(book_obj)
-shop_obj.add_books(book_obj)
-
-
+            else:
+               return False
+        
+       
+    def sell(self,book):
+            print("length",len(self.inventory))
+            self.sold_book.append(self.inventory.pop(self.inventory.index( book ) ) )    
+            print("afterrrr",len(self.inventory))
+           
+            return book.title         
         
         
+            
+        
+    
+    def sales(self,author): 
+         #print(author)     
+         for i in self.sold_book:
+            print("qqqq",i.title)
+            if i.author == author:
+                #todo
+                
+                
+                return True
+            else:
+                return False
+    
+
+
+     
+        
+        # find sales of books for a author
+         # will be rquired to calculate author royalty
+       
+
